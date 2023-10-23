@@ -20,6 +20,7 @@ import java.util.*;
 @Service
 public class TeacherServiceImpl implements TeacherService {
 
+
     private final TeacherRepository teacherRepository;
 
     private final PasswordEncoder passwordEncoder;
@@ -52,10 +53,18 @@ public class TeacherServiceImpl implements TeacherService {
         } catch (DuplicateKeyException e) {
             throw new DuplicateKeyException("Student with this id is already created");
         } catch (Exception e) {
-
             throw new Exception(e.getLocalizedMessage());
         }
 
+    }
+
+    @Override
+    public Student getStudentById(String studentId) throws Exception {
+        try {
+            return teacherRepository.getStudentById(studentId);
+        } catch (UsernameNotFoundException e) {
+            throw new UsernameNotFoundException("Student with id:- " + studentId + " not found");
+        }
     }
 
     @Override
@@ -71,13 +80,11 @@ public class TeacherServiceImpl implements TeacherService {
     public String predictResult(String studentId, String subject) throws Exception {
         Student student = getStudentById(studentId);
 
-       if(student.getStudentDetails().getPredictedResult() == null || student.getStudentDetails().getPredictedResult().get(subject) == null) {
 
         HashMap<String, String> storedPredictedResult = student.getStudentDetails().getPredictedResult();
         if (storedPredictedResult == null || storedPredictedResult.get(subject) == null) {
 
             HashMap<String, ArrayList<Integer>> studentMarks = student.getStudentDetails().getStudentMarks();
-            System.out.println("Student marks: "+studentMarks);
             if (!studentMarks.containsKey(subject) && !subject.equals("overall")) {
                 throw new InvalidParameter("Invalid subject,Subject not available");
             } else {
@@ -105,13 +112,11 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public Student getStudentById(String studentId) throws Exception {
-        try {
-            return teacherRepository.getStudentById(studentId);
-        } catch (UsernameNotFoundException e) {
-            throw new UsernameNotFoundException("Student with id:- " + studentId + " not found");
-        }
+    public void deleteStudent(String studentId) {
+
+        teacherRepository.deleteStudent(studentId);
     }
+
 
     private String getPrediction(LinkedHashMap<String, Object> params) throws Exception {
         String url = "http://localhost:80/predict";
@@ -134,7 +139,8 @@ public class TeacherServiceImpl implements TeacherService {
         }
     }
 
-    private LinkedHashMap<String, Object> getMLParams(StudentDetails studentDetails, ArrayList<Integer> totalMarks) {
+    private LinkedHashMap<String, Object> getMLParams(StudentDetails
+                                                              studentDetails, ArrayList<Integer> totalMarks) {
         LinkedHashMap<String, Object> params = new LinkedHashMap<>();
         params.put("sex", studentDetails.getSex());
         params.put("age", studentDetails.getAge());
@@ -162,17 +168,14 @@ public class TeacherServiceImpl implements TeacherService {
         params.put("G1", totalMarks.get(0));
         params.put("G2", totalMarks.get(1));
         return params;
-
     }
-
 
     private ArrayList<Integer> getTotalMarks(HashMap<String, ArrayList<Integer>> studentMarks) {
         ArrayList<Integer> totalMarks = new ArrayList<>();
         int term1 = 0, term2 = 0;
 
         int totalSubject = studentMarks.size();
-        for (Map.Entry entry : studentMarks.entrySet()) {
-            ArrayList<Integer> marks = (ArrayList<Integer>) entry.getValue();
+
 
         for (Map.Entry<String, ArrayList<Integer>> entry : studentMarks.entrySet()) {
             ArrayList<Integer> marks = entry.getValue();
@@ -180,10 +183,11 @@ public class TeacherServiceImpl implements TeacherService {
             term1 += marks.get(0);
             term2 += marks.get(1);
         }
-        totalMarks.add(term1/totalSubject);
-        totalMarks.add(term2/totalSubject);
+        totalMarks.add(term1 / totalSubject);
+        totalMarks.add(term2 / totalSubject);
 
         return totalMarks;
-
     }
 }
+
+

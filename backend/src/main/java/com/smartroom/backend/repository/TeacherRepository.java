@@ -12,4 +12,6 @@ public interface TeacherRepository {
     Student getStudentById(String studentId) throws Exception;
 
     Student updateStudent(Student student);
+
+    void deleteStudent(String studentId);
 }

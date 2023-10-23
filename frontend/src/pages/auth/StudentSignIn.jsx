@@ -1,40 +1,40 @@
 import { Grid, Tabs, Tab, TextField, Button, Box, Alert } from '@mui/material';
-import { useState,useContext,useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import authimg from '../../images/authimg.png'
 import axios from "axios";
-import {useNavigate} from 'react-router-dom'
-import StudentCredContext from '../../contextStore/StudentCredentials';
+import { useNavigate } from 'react-router-dom'
+import StudentCredContext from '../../context/StudentCredentials';
 
 const StudentSignIn = () => {
-    const navigate=useNavigate();
-    const [flag,setFlag]=useState(false);
-    const [actualData,setActualData]=useState()
+    const navigate = useNavigate();
+    const [flag, setFlag] = useState(false);
+    const [actualData, setActualData] = useState()
     const [error, setError] = useState({
         status: false,
         msg: "",
         type: ""
     })
-    const {setUserData,token,setNameCardData}=useContext(StudentCredContext);
-    useEffect(()=>{
+    const { setUserData, token, setNameCardData } = useContext(StudentCredContext);
+    useEffect(() => {
         console.log("inside useeffect")
         console.log(token)
-        const loginTeacher=async()=>{
+        const loginTeacher = async () => {
             console.log(actualData)
-            const login=await axios.post("http://localhost:8080/auth/student/login", actualData);
+            const login = await axios.post("http://localhost:8080/auth/student/login", actualData);
             console.log(login)
             await localStorage.setItem('studenttoken', await JSON.stringify(login.data));
             navigate(`/student/dashboard/${actualData.username}`)
 
-    }
-    if(flag===true){
-        console.log('called async')
-        loginTeacher();
-        setFlag(false)        
-        console.log('exit if statement')
-    }
+        }
+        if (flag === true) {
+            console.log('called async')
+            loginTeacher();
+            setFlag(false)
+            console.log('exit if statement')
+        }
 
-    },[flag])
+    }, [flag])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -61,7 +61,7 @@ const StudentSignIn = () => {
                 }}>
                 </Grid>
                 <Grid item lg={6} sm={8} xs={12}>
-                    <Box sx={{ mx: 4, height:'90vh' }} component='form' noValidate id='login-form' onSubmit={handleSubmit}>
+                    <Box sx={{ mx: 4, height: '90vh' }} component='form' noValidate id='login-form' onSubmit={handleSubmit}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                             <Tabs>
                                 <Tab label='Login' sx={{ textTransform: 'none', fontSize: 'large', fontWeight: 'bold' }}></Tab>
@@ -82,3 +82,10 @@ const StudentSignIn = () => {
 }
 
 export default StudentSignIn
+
+
+
+
+
+
+

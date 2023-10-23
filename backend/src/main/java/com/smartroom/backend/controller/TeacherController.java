@@ -62,8 +62,19 @@ public class TeacherController {
 
     @PostMapping("send/email/{studentMail}")
     public ResponseEntity<String> sendEmail(@RequestBody String message ,@PathVariable("studentMail") String studentMail){
-         emailSender.sendEmail(studentMail,message,"Attention Needed!!");
-         return new ResponseEntity<>("Mail Successfully Send" , HttpStatus.OK);
+        if(message.contains("Zoom")){
+            emailSender.sendEmail(studentMail,message,"Online Class via Zoom");
+        }
+        else {emailSender.sendEmail(studentMail,message,"Attention Needed!!");
+        }
+
+        return new ResponseEntity<>("Mail Successfully Send" , HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{studentId}")
+    public ResponseEntity<Void> deleteStudent(@PathVariable("studentId") String studentId){
+        teacherService.deleteStudent(studentId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     }

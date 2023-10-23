@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useContext } from 'react';
-import TeacherCredContext from '../../contextStore/TeacherCreadential';
+import TeacherCredContext from '../../context/TeacherCreadential';
 
 
 const Login = () => {
@@ -21,12 +21,12 @@ const Login = () => {
 
         const data = new FormData(e.currentTarget);
         console.log(data);
-        
+
         const actualData = {
             username: data.get('teacherid'),
             password: data.get('password')
         }
-        localStorage.setItem("teacherId",actualData.username);
+        localStorage.setItem("teacherId", actualData.username);
         console.log(actualData);
         console.log("after data")
 
@@ -65,3 +65,8 @@ const Login = () => {
 }
 
 export default Login
+
+
+
+
+

@@ -25,13 +25,26 @@ body{
 .bg-details{
   background-color: #1e1e1e;
 }
-.sidebar-item-selected{
-  color: white;
-  border-right: 2px solid white;
+
+/* Sidebar item styles */
+.sidebar-item,
+.sidebar-item-selected,
+.teachername {
+  padding: 0.4rem 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  transition: background-color 0.2s;
 }
-.sidebar-item{
-  border-right: 2px solid transparent;
+
+.sidebar-item:hover {
+  background-color: #444; /* Background color on hover */
 }
-.sidebar-item:hover,.teachername:hover {
- color:#a1a0a0;
+
+.sidebar-item-selected {
+  background-color: #555; /* Background color for the selected item */
 }
+
+
