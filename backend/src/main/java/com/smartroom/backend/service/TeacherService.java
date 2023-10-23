@@ -15,4 +15,6 @@ public interface TeacherService {
     Student updateStudent(String studentId, StudentDetails studentDetails) throws Exception;
 
     String predictResult(String studentId, String subject) throws Exception;
+
+    void deleteStudent(String studentId);
 }

@@ -2,8 +2,8 @@ import Home from './pages/home/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import TeacherSignIn from './pages/auth/TeacherSignIn';
 import StudentSignIn from './pages/auth/StudentSignIn';
-import { StudentCredProvider } from './contextStore/StudentCredentials';
-import { TeacherCredProvider } from './contextStore/TeacherCreadential';
+import { StudentCredProvider } from './context/StudentCredentials';
+import { TeacherCredProvider } from './context/TeacherCreadential';
 import StudentDashboard from './pages/dashboard/StudentDashboard';
 
 
@@ -16,9 +16,8 @@ function App() {
                     <Route path='/teacher' element={<TeacherCredProvider><TeacherSignIn /></TeacherCredProvider>} />
                     <Route path='/student' element={<StudentCredProvider><StudentSignIn /></StudentCredProvider>} />
                 </Route>
-                {/* <Route path='/student/dashboard' element={<StudentCredProvider><Dashboard/></StudentCredProvider>}/> */}
                 <Route path='/teacher/dashboard/*' element={<TeacherCredProvider><Home /></TeacherCredProvider>} />
-                <Route path='/student/dashboard/:id/*' element={<StudentCredProvider><StudentDashboard/></StudentCredProvider>}/>
+                <Route path='/student/dashboard/:id/*' element={<StudentCredProvider><StudentDashboard/></StudentCredProvider>}/> 
             </Routes>
         </BrowserRouter >
     );

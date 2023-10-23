@@ -18,7 +18,7 @@ public class EmailSender {
     public void sendEmail(String receiverEmail, String body, String subject) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
-        simpleMailMessage.setFrom("smartroom2023@gmail.com");
+        simpleMailMessage.setFrom("donotreply.smartroom@gmail.com");
         simpleMailMessage.setTo(receiverEmail);
         simpleMailMessage.setText(body);
         simpleMailMessage.setSubject(subject);

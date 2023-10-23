@@ -17,6 +17,16 @@ public class TeacherRepositoryImpl implements TeacherRepository {
 
     private final MongoOperations mongoOperations;
 
+    @Override
+    public void deleteStudent(String studentId) {
+        try {
+            Student student = getStudentById(studentId);
+            mongoOperations.remove(student);
+        } catch (Exception e) {
+            throw new RuntimeException("Internal server error try again later");
+        }
+    }
+
     @Autowired
     TeacherRepositoryImpl(MongoOperations mongoOperations) {
         this.mongoOperations = mongoOperations;

@@ -42,7 +42,7 @@ function Content() {
             <div className="w-full h-screen hidden sm:block sm:w-20 xl:w-60 flex-shrink-0">
                 
             </div>
-            <div className=" h-screen flex-grow overflow-x-hidden overflow-auto flex flex-wrap content-start p-2">
+            <div className=" h-screen flex-grow overflow-x-hidden overflow-auto flex flex-wrap content-start p-4">
                 {studentSubjectData.map(
                     ({
                         id,
@@ -62,26 +62,27 @@ function Content() {
                     ),
                 )}
 
-                <div className="w-full p-2  lg:w-2/3">
+                <div className="w-full p-2 lg:w-2/3 mt-2">
                     <div className="rounded-lg bg-card sm:h-96 h-96">
                         <Graph />
                     </div>
                 </div>
 
-                <div className="w-full p-2 lg:w-1/3">
+                <div className="w-full p-2 lg:w-1/3 mt-2">
                     <div className="rounded-lg bg-card h-96">
                     <Detail />
                     </div>
                 </div>
 
-                {sendMail?<div className="w-full flex justify-center p-2">
+                {sendMail?<div className="w-full flex justify-center p-2 mt-2">
 
                     <div></div>
-                    <Button variant="contained" color="error" onClick={handleSendMail}>Attention Needed </Button>
-                </div>:null}
+                    <Button variant="contained" color="error" style={{ width: '100%' }}  onClick={handleSendMail}> 
+                    Attention Needed </Button>
+                    </div>:null}
 
                 <div className="w-full flex justify-center mt-2 p-2">
-                <div className="w-full">{ sent?<Alert severity="error">Email sent is successfully</Alert>:null} </div>
+                <div className="w-full">{ sent?<Alert severity="error">Email is sent successfully</Alert>:null} </div>
             </div>
                          
 
