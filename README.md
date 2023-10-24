@@ -24,6 +24,7 @@ At the heart of the project is a machine-learning model that accurately predicts
 - Teachers can access a list of weak-performing students in their class, helping them target support where it's needed most.
 - Teachers can conduct seamless online classes enhancing the virtual learning experience for both teachers and students. 
 - Teachers can take proctored examinations that guarantee the authenticity of each student and maintain a fair testing environment.
+  (Still in Development)
 
 #### Student Features
 - Students can view visual representations of their scores and predicted results, helping them track their progress.
