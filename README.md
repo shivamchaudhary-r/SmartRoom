@@ -1,6 +1,5 @@
 # SmartRoom
-It is a web application which aims to provide a better monitoring and predicting student's performance in upcoming examinations using machine learning model.
-This parameters required in the prediction is not restricted to the class performance only but also consider various factors which directly or indirectly can affect the student's performance. 
+SmartRoom is an innovative web application that utilizes full-stack development and machine learning to address critical challenges in the education sector. It serves as an intelligent classroom assistant that significantly reduces the workload of teachers by automating various educational processes and providing valuable insights to enhance student performance.
 
 ## Tools And Technology
 - JavaScript
@@ -14,24 +13,31 @@ This parameters required in the prediction is not restricted to the class perfor
 - Docker
 
 ## Features
-The user's of this application are teacher and student.
-Features of teacher's are
-1. Can monitor the student's performance prediction.
-2. Can provide the student's parameters and data.
-3. Can see visual representation of student predicted marks.
-4. Can notify student's through email whenever predicted score is low.
-5. Can see a list of weak performing student's in the class
+#### Performance Prediction
+At the heart of the project is a machine-learning model that accurately predicts a student's academic performance. This model takes into account various factors, including past performance, demographic information, and social and interpersonal relations. By doing so, it identifies struggling students and offers early interventions, helping educators support individual students effectively and improve their academic outcomes.
 
-Features of student's are
-1. Can see visual representation of their scores and predicted result
-2. Can see a list of top performing student's in the class
+#### Teacher Features
+- Teachers can monitor student performance predictions, gaining insights into individual and class-wide progress.
+- Teachers can provide student parameters and data to enhance the accuracy of the prediction model.
+- Teachers can view visual representations of predicted scores, making it easier to identify trends and areas for improvement.
+- The system can notify students via email when their predicted scores are low, enabling timely intervention.
+- Teachers can access a list of weak-performing students in their class, helping them target support where it's needed most.
+- Teachers can conduct seamless online classes enhancing the virtual learning experience for both teachers and students. 
+- Teachers can take proctored examinations that guarantee the authenticity of each student and maintain a fair testing environment.
+
+#### Student Features
+- Students can view visual representations of their scores and predicted results, helping them track their progress.
+- Students can see a list of the top-performing students in their class, fostering healthy competition and motivation.
 
 ## Implementation
-- The frontend was implemented using React.js, which allowed for a responsive and user-friendly interface. The application can retrieve student data, predictions and display them to the teacher in an easy-to-understand format. 
-- The backend was built using SpringBoot with dependencies fulfilled by Maven. Spring Security ensured secure logins and robust authentication system. MongoDB was integrated to handle student data storage. It is a medium between frontend and ML Model and fetches the predictions from the machine learning model through an API and stores it in Database. 
-- The model was trained on a dataset that included past performance, demographic, and social data for a group of students. The model was able to achieve an accuracy of 94% on the test set, and was able to correctly identify students who were at risk of performance issues. The  ML Model is exposed using an API.
+##### Frontend
+The front end of the application is implemented using React.js, Material UI, and Tailwind. These technologies provide a responsive and user-friendly interface. It includes a comprehensive dashboard with a sidebar for easy access to various services, analytics graphs for performance tracking, and leaderboards to motivate students to excel. This combination of technologies ensures an aesthetically pleasing and highly usable front end.
 
+#### Backend
+The backend is built using SpringBoot, Spring Security, and Maven. Spring Security ensures secure logins and a robust authentication system, while Maven simplifies project management and dependency handling. MongoDB is integrated to handle student data storage and acts as a medium between the frontend and machine learning model. JWT-based authentication and token management enhance data security and user privacy.
 
+#### Machine Learning
+The machine learning component employs Scikit-learn to train a random forest prediction model. This model, achieving an impressive 94% accuracy, plays a critical role in predicting academic performance. It is exposed through an API, using FastAPI to make it readily available to the backend, ensuring seamless integration between various components of the application.
 
 
 ## Prediction Model Parameter
@@ -64,9 +70,5 @@ Features of student's are
 ```
 ## Working Demo
 
-
-
-https://user-images.githubusercontent.com/50453172/215263423-5b443617-1fd7-428d-ae8b-dbe4b74f4c48.mp4
-
-
+https://github.com/shivamchaudhary-r/SmartRoom/assets/79602168/d88e8714-33a6-4965-b371-1116bb18cd98
 
